@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 
@@ -26,4 +27,8 @@ func main() {
 	if err := s.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 		log.Fatal("Server startup failed")
 	}
+}
+
+func hello(w http.ResponseWriter, r *http.Request) {
+	io.WriteString(w, "Hello, world!")
 }
